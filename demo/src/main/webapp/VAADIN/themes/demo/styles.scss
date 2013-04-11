@@ -1,0 +1,91 @@
+@import "../reindeer/reindeer";
+
+.demo {
+
+	@include reindeer;
+	
+	// Fix so that the item outlines are shown
+	.grid {
+	  overflow: visible;
+	}
+	
+	// Style the items in the grid
+	.grid > .v-label {
+	  outline: 1px dotted rgba(0,0,0,.3);
+	  text-align: center;
+	  padding: 2em 0;
+	  font-size: 16px;
+	  font-weight: bold;
+	}
+	
+	// We want the items in the grid to stay between 100px and 200px, if possible
+	.grid[width-range~="0-200px"] {
+		& > .v-label {
+		  width: 100%;
+		}
+	}
+	
+	.grid[width-range~="201px-400px"] {
+    & > .v-label {
+      width: 50%;
+    }
+  }
+  
+  .grid[width-range~="401px-600px"] {
+    & > .v-label {
+      width: 33.3333%;
+    }
+  }
+  
+  .grid[width-range~="601px-800px"] {
+    & > .v-label {
+      width: 25%;
+    }
+  }
+  
+  .grid[width-range~="801px-1000px"] {
+    & > .v-label {
+      width: 20%;
+    }
+  }
+  
+  .grid[width-range~="1001px-"] {
+    & > .v-label {
+      width: 16.6667%;
+    }
+  }
+  
+  // Use Sass just to show how it can be leveraged
+  .description {
+  	
+    // These will auto-adjust according the the font-size
+    padding: 1em;
+    line-height: 1.5;
+    
+    &[width-range="0-100px"] {
+      font-size: 10px;
+    }
+    
+    &[width-range="101px-200px"] {
+      font-size: 12px;
+    }
+    
+    &[width-range="200px-350px"] {
+      font-size: 14px;
+    }
+    
+    &[width-range="351px-500px"] {
+      font-size: 18px;
+    }
+    
+    &[width-range="501px-700px"] {
+      font-size: 24px;
+    }
+    
+    &[width-range="701px-"] {
+      font-size: 30px;
+    }
+    
+  }
+	
+}
