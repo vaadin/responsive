@@ -11,9 +11,20 @@ import com.vaadin.client.ui.layout.ElementResizeListener;
 import com.vaadin.shared.ui.Connect;
 import com.vaadin.ui.Responsive;
 
+/**
+ * The client side connector for the Responsive extension.
+ * 
+ * TODO It might make more sense to just make this a pure JS extension, since
+ * the amount of native code in this class is near 100%.
+ * 
+ * @author jouni@vaadin.com
+ * 
+ */
 @Connect(Responsive.class)
 public class ResponsiveConnector extends AbstractExtensionConnector implements
 		ElementResizeListener {
+
+	private static final long serialVersionUID = -7960943137494057105L;
 
 	/**
 	 * The target component which we will monitor for width changes
@@ -129,12 +140,14 @@ public class ResponsiveConnector extends AbstractExtensionConnector implements
 	
 	// Get all the rulesets from the stylesheet
 	var theRules = new Array();
+	var IE = $wnd.navigator.appName == "Microsoft Internet Explorer";
+	
 	if (sheet.cssRules) {
 	    theRules = sheet.cssRules
 	} else if (sheet.rules) {
 	    theRules = sheet.rules
 	}
-	
+    
 	// Loop through the rulesets
 	for(var i = 0, len = theRules.length; i < len; i++) {
 	    var rule = theRules[i];
@@ -143,51 +156,61 @@ public class ResponsiveConnector extends AbstractExtensionConnector implements
 	        // @import rule, traverse recursively
 	        @com.vaadin.ui.client.ResponsiveConnector::searchStylesheetForBreakPoints(Lcom/google/gwt/core/client/JavaScriptObject;)(rule.styleSheet);
 	        
-	    } else if(rule.type == 1) {
+	    } else if(rule.type == 1 || !rule.type) {
 	        // Regular selector rule
 	        
+	        // IE parses CSS like .class[attr="val"] into [attr="val"].class so we need to check for both
+	        
 	        // Pattern for matching [width-range] selectors
-	        var widths = /([\.|#]\S*)\[width-range~?=\"(.*)-(.*)\"\]/i;
+	        var widths = IE? /\[width-range~?=["|'](.*)-(.*)["|']\]([\.|#]\S+)/i : /([\.|#]\S+)\[width-range~?=["|'](.*)-(.*)["|']\]/i;
 	        
 	        // Patter for matching [height-range] selectors
-	        var heights = /([\.|#]\S*)\[height-range~?=\"(.*)-(.*)\"\]/i;
+	        var heights = IE? /\[height-range~?=["|'](.*)-(.*)["|']\]([\.|#]\S+)/i : /([\.|#]\S+)\[height-range~?=["|'](.*)-(.*)["|']\]/i;
 	        
 	        // Array of all of the separate selectors in this ruleset
 	        var haystack = rule.selectorText.toLowerCase().split(",");
-	        
+			
 	        // Loop all the selectors in this ruleset
 	        for(var k = 0, len2 = haystack.length; k < len2; k++) {
 	            var result;
-	            
+
 	            // Check for width-range matches
 	            if(result = haystack[k].match(widths)) {
+	            	var selector = IE? result[3] : result[1]
+	                var min = IE? result[1] : result[2];
+	                var max = IE? result[2] : result[3];
+	                
 	                // Avoid adding duplicates
 	                var duplicate = false;
 	                for(var l = 0, len3 = widthRanges.length; l < len3; l++) {
 	                    var bp = widthRanges[l];
-	                    if(result[1] == bp[0] && result[2] == bp[1] && result[3] == bp[2]) {
+	                    if(selector == bp[0] && min == bp[1] && max == bp[2]) {
 	                        duplicate = true;
 	                        break;
 	                    }
 	                }
 	                if(!duplicate) {
-	                    widthRanges.push([result[1], result[2], result[3]]);
+	                    widthRanges.push([selector, min, max]);
 	                }
 	            }
 	            
 	            // Check for height-range matches
 	            if(result = haystack[k].match(heights)) {
+	            	var selector = IE? result[3] : result[1]
+	                var min = IE? result[1] : result[2];
+	                var max = IE? result[2] : result[3];
+	                
 	                // Avoid adding duplicates
 	                var duplicate = false;
 	                for(var l = 0, len3 = heightRanges.length; l < len3; l++) {
 	                    var bp = heightRanges[l];
-	                    if(result[1] == bp[0] && result[2] == bp[1] && result[3] == bp[2]) {
+	                    if(selector == bp[0] && min == bp[1] && max == bp[2]) {
 	                        duplicate = true;
 	                        break;
 	                    }
 	                }
 	                if(!duplicate) {
-	                    heightRanges.push([result[1], result[2], result[3]]);
+	                    heightRanges.push([selector, min, max]);
 	                }
 	            }
 	        }
@@ -307,14 +330,14 @@ public class ResponsiveConnector extends AbstractExtensionConnector implements
 	    }
 	    
 	    if(max) {
-            if(min <= size && size <= max) {
-                ranges += " " + bp[1] + "-" + bp[2];
-            }
-        } else {
-            if(min <= size) {
-                ranges += " " + bp[1] + "-";
-            }
-        }
+	        if(min <= size && size <= max) {
+	            ranges += " " + bp[1] + "-" + bp[2];
+	        }
+	    } else {
+	        if(min <= size) {
+	            ranges += " " + bp[1] + "-";
+	        }
+	    }
 	}
 	
 	// Trim the output and return it
