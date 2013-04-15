@@ -2,7 +2,7 @@
 
 .demo {
 
-	@include reindeer;
+  @include reindeer;
 	
 	// Fix so that the item outlines are shown
 	.grid {
@@ -19,40 +19,28 @@
 	}
 	
 	// We want the items in the grid to stay between 100px and 200px, if possible
-	.grid[width-range~="0-200px"] {
-		& > .v-label {
-		  width: 100%;
-		}
+	.grid[width-range~="0-200px"] .v-label {
+    width: 100%;
 	}
 	
-	.grid[width-range~="201px-400px"] {
-    & > .v-label {
-      width: 50%;
-    }
+	.grid[width-range~="201px-400px"] > .v-label {
+    width: 50%;
   }
   
-  .grid[width-range~="401px-600px"] {
-    & > .v-label {
-      width: 33.3333%;
-    }
+  .grid[width-range~="401px-600px"] > .v-label {
+    width: 33.3333%;
   }
   
-  .grid[width-range~="601px-800px"] {
-    & > .v-label {
-      width: 25%;
-    }
+  .grid[width-range~="601px-800px"] > .v-label {
+    width: 25%;
   }
   
-  .grid[width-range~="801px-1000px"] {
-    & > .v-label {
-      width: 20%;
-    }
+  .grid[width-range~="801px-1000px"] > .v-label {
+    width: 20%;
   }
   
-  .grid[width-range~="1001px-"] {
-    & > .v-label {
-      width: 16.6667%;
-    }
+  .grid[width-range~="1001px-"] > .v-label {
+    width: 16.6667%;
   }
   
   // Use Sass just to show how it can be leveraged

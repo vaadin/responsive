@@ -12,11 +12,11 @@ Official releases of this add-on are available at Vaadin Directory. For Maven in
 
 ## Building and running demo
 
-git clone https://github.com/vaadin/responsive.git
-cd responsive
-mvn clean install
-cd demo
-mvn jetty:run
+    git clone https://github.com/vaadin/responsive.git
+    cd responsive
+    mvn clean install
+    cd demo
+    mvn jetty:run
 
 To see the demo, navigate to http://localhost:8080/
 
@@ -62,7 +62,7 @@ Another way of debugging client-side is superdev mode. To enable it, uncomment d
 
 ## Issue tracking
 
-The issues for this add-on are tracked using GitHub Issues. All bug reports and feature requests are appreciated. 
+The issues for this add-on are tracked using [GitHub Issues](https://github.com/vaadin/responsive/issues). All bug reports and feature requests are appreciated. 
 
 ## Contributions
 
@@ -103,4 +103,4 @@ Here is a simple example on how to try out the add-on component:
         /* Styles that apply when the UI's width is over 800 pixels */
     }
   	
-For a more comprehensive example, see src/main/java/com/vaadin/demo/ResponsiveDemoUI.java
+For a more comprehensive example, see src/main/java/com/vaadin/demo/ResponsiveDemoUI.java and src/main/webapp/VAADIN/themes/demo/styles.scss
