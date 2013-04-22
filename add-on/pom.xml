@@ -5,7 +5,7 @@
 	<groupId>com.vaadin.ui</groupId>
 	<artifactId>responsive</artifactId>
 	<packaging>jar</packaging>
-	<version>0.5-SNAPSHOT</version>
+	<version>1.0.0.alpha1</version>
 	<name>Responsive Add-on</name>
 
 	<properties>
@@ -14,24 +14,24 @@
 		<vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
 	</properties>
 
-    <!--     
+       
 	<organization>
-		<name>My Name</name>
-		<url>https://github.com/mygithubaccount/Responsive/</url>
+		<name>Vaadin LTd.</name>
+		<url>https://github.com/vaadin/</url>
 	</organization>
     
 	<scm>
-		<url>git://github.com/mygithubaccount/Responsive.git</url>
-		<connection>scm:git:git://github.com/mygithubaccount/Responsive.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com:/mygithubaccount/${ComponentClassName}.git</developerConnection>
-		<tag>Responsive add-on for Vaadin</tag>
+		<url>git://github.com/vaadin/responsive.git</url>
+		<connection>scm:git:git://github.com/vaadin/responsive.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com:/vaadin/responsive.git</developerConnection>
+		<tag>Vaadin Responsive</tag>
 	</scm>
 
 	<issueManagement>
 		<system>GitHub</system>
-		<url>https://github.com/mygithubaccount/Responsive/issues</url>
+		<url>https://github.com/vaadin/responsive/issues</url>
 	</issueManagement>
-    -->
+   
 
 	<licenses>
 		<license>
