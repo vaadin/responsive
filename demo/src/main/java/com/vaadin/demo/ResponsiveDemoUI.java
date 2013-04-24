@@ -1,5 +1,6 @@
 package com.vaadin.demo;
 
+import com.vaadin.addon.responsive.Responsive;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.server.VaadinRequest;
@@ -7,7 +8,6 @@ import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.HorizontalSplitPanel;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.Responsive;
 import com.vaadin.ui.UI;
 
 @Theme("demo")
@@ -41,7 +41,7 @@ public class ResponsiveDemoUI extends UI {
 						+ "different widths. They maintain a width of 100-200px, and always "
 						+ "span the entire width of the container.</p><p>This label will "
 						+ "adapt its font size and line height for different widths.</p>"
-						+ "<p><a href=\"http://vaadin.com/addon/responsive\">Download the "
+						+ "<p><a href=\"http://vaadin.com/addon/vaadin-responsive\">Download the "
 						+ "Responsive add-on</a></p>", ContentMode.HTML);
 		description.addStyleName("description");
 		split.addComponent(description);

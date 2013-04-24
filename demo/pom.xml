@@ -5,7 +5,7 @@
 	<groupId>com.vaadin.demo</groupId>
 	<artifactId>responsive-demo</artifactId>
 	<packaging>war</packaging>
-	<version>0.5-SNAPSHOT</version>
+	<version>1.0-SNAPSHOT</version>
 	<name>Responsive Add-on Demo</name>
 
 	<properties>
@@ -73,9 +73,9 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.vaadin.ui</groupId>
+			<groupId>com.vaadin.addon.responsive</groupId>
 			<artifactId>responsive</artifactId>
-			<version>${version}</version>
+			<version>1.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.vaadin</groupId>

@@ -8,7 +8,7 @@ Try the add-on demo at http://dev.jouni.me/responsive
 
 ## Download release
 
-Official releases of this add-on are available at Vaadin Directory. For Maven instructions, download and reviews, go to http://vaadin.com/addon/responsive
+Official releases of this add-on are available at Vaadin Directory. For Maven instructions, download and reviews, go to http://vaadin.com/addon/vaadin-responsive
 
 ## Building and running demo
 

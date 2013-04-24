@@ -4,7 +4,7 @@
 	    goal "vaadin:update-widgetset".
 	-->
 
-	<inherits name="com.vaadin.ui.ResponsiveWidgetSet" /> 
+	<inherits name="com.vaadin.addon.responsive.ResponsiveWidgetSet" /> 
 
     <!--
      Uncomment the following to compile the widgetset for one browser only.
