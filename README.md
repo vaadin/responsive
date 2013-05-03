@@ -1,6 +1,6 @@
 # Responsive Add-on for Vaadin 7
 
-Responsive is an extension add-on for Vaadin 7. It provides any component or UI the ability to respond to changes in their size using CSS. It provides similar funcionatily as CSS media queries do, but it works also in IE8 and you can respond to size changes on a component level, not just on a viewport level.
+Responsive is an extension add-on for Vaadin 7. It provides any component or UI the ability to respond to changes in their size using CSS. It provides similar functionality as CSS media queries do, but it works also in IE8 and you can respond to size changes on a component level, not just on a viewport level.
 
 ## Online demo
 
