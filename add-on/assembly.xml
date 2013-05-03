@@ -31,7 +31,7 @@
 			<filtered>true</filtered>
 		</file>
 		<file>
-			<source>LICENSE.txt</source>
+			<source>../LICENSE.TXT</source>
 			<outputDirectory>.</outputDirectory>
 			<filtered>false</filtered>
 		</file>
