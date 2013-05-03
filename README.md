@@ -4,7 +4,7 @@ Responsive is an extension add-on for Vaadin 7. It provides any component or UI 
 
 ## Online demo
 
-Try the add-on demo at http://dev.jouni.me/responsive
+Try the add-on demo at http://demo.vaadin.com/responsive
 
 ## Download release
 
