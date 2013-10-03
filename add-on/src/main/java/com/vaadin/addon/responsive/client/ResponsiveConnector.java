@@ -141,12 +141,21 @@ public class ResponsiveConnector extends AbstractExtensionConnector implements
 	// Get all the rulesets from the stylesheet
 	var theRules = new Array();
 	var IE = $wnd.navigator.appName == "Microsoft Internet Explorer";
+	var IE8 = false;
 	
 	if (sheet.cssRules) {
 	    theRules = sheet.cssRules
 	} else if (sheet.rules) {
 	    theRules = sheet.rules
+	    IE8 = true; // Only browser (of supported ones) that has no cssRules property
 	}
+
+        // Special import handling for IE8
+        if (IE8) {
+            for(var i = 0, len = sheet.imports.length; i < len; i++) {
+                @com.vaadin.addon.responsive.client.ResponsiveConnector::searchStylesheetForBreakPoints(Lcom/google/gwt/core/client/JavaScriptObject;)(sheet.imports[i]);
+            }
+        }
     
 	// Loop through the rulesets
 	for(var i = 0, len = theRules.length; i < len; i++) {
@@ -168,7 +177,7 @@ public class ResponsiveConnector extends AbstractExtensionConnector implements
 	        var heights = IE? /\[height-range~?=["|'](.*)-(.*)["|']\]([\.|#]\S+)/i : /([\.|#]\S+)\[height-range~?=["|'](.*)-(.*)["|']\]/i;
 	        
 	        // Array of all of the separate selectors in this ruleset
-	        var haystack = rule.selectorText.toLowerCase().split(",");
+	        var haystack = rule.selectorText.split(",");
 			
 	        // Loop all the selectors in this ruleset
 	        for(var k = 0, len2 = haystack.length; k < len2; k++) {
