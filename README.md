@@ -52,6 +52,9 @@ Another way of debugging client-side is superdev mode. To enable it, uncomment d
  
 ## Release notes
 
+### Version 1.0.0.alpha2
+- Bugfixes (see GitHub Issues)
+
 ### Version 1.0.0.alpha1
 - Initial public release
 - Support for width-range and height-range CSS attribute selectors on the client side
