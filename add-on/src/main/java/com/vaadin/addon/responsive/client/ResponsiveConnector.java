@@ -114,8 +114,8 @@ public class ResponsiveConnector extends AbstractExtensionConnector implements
 	
 	// Loop all stylesheets on the page and process them individually
 	for(var i = 0, len = sheets.length; i < len; i++) {
-	    var sheet = sheets[i];
-	    @com.vaadin.addon.responsive.client.ResponsiveConnector::searchStylesheetForBreakPoints(Lcom/google/gwt/core/client/JavaScriptObject;)(sheet);        
+            var sheet = sheets[i];
+            @com.vaadin.addon.responsive.client.ResponsiveConnector::searchStylesheetForBreakPoints(Lcom/google/gwt/core/client/JavaScriptObject;)(sheet);
 	}
 	
 	// Only for debugging
@@ -151,10 +151,16 @@ public class ResponsiveConnector extends AbstractExtensionConnector implements
 	}
 
         // Special import handling for IE8
-        if (IE8) {
-            for(var i = 0, len = sheet.imports.length; i < len; i++) {
-                @com.vaadin.addon.responsive.client.ResponsiveConnector::searchStylesheetForBreakPoints(Lcom/google/gwt/core/client/JavaScriptObject;)(sheet.imports[i]);
+        try {
+            if (IE8) {
+                for(var i = 0, len = sheet.imports.length; i < len; i++) {
+                    @com.vaadin.addon.responsive.client.ResponsiveConnector::searchStylesheetForBreakPoints(Lcom/google/gwt/core/client/JavaScriptObject;)(sheet.imports[i]);
+                }
             }
+        } catch(e) {
+            // This is added due to IE8 failing to handle imports of some sheets for unknown reason (throws a permission denied exception)
+            console.log("Failed to handle imports of CSS style sheet: " + sheet.href); 
+            // Just continue parsing the other sheets
         }
     
 	// Loop through the rulesets
