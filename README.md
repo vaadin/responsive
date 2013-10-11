@@ -52,6 +52,9 @@ Another way of debugging client-side is superdev mode. To enable it, uncomment d
  
 ## Release notes
 
+### 1.0.0.alpha4
+- Bugfixes (see GitHub Issues)
+
 ### 1.0.0.alpha3
 - Bugfixes (see GitHub Issues)
 
